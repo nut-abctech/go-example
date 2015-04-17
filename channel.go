@@ -24,6 +24,14 @@ func main() {
 	messages := make(chan string)
 	go pinger(messages)
 	go print(messages)
+	//buffer channel
+	buffmsg := make(chan string, 2)
+	buffmsg <- "buffer"
+	buffmsg <- "channel"
+
+	fmt.Println(<-buffmsg)
+	fmt.Println(<-buffmsg)
+
 	var input string
 	fmt.Scanln(&input)
 }
